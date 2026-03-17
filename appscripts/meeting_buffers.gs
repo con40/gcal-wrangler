@@ -24,10 +24,11 @@ function createMeetingBuffers() {
     // 4. Is it the daily scrum call? (skip)
     const isBuffer = title.includes("Buffer");
     const isAllDay = event.isAllDayEvent();
-    const isSoloEvent = (organizer === myEmail && guestList.length === 0);
+    const isSoloOr1on1 = (guestList.length <= 1);
     const isDailyScrum = title.includes("Daily Scrum");
+    const isTeamCollab = title.includes("Team Collab");
 
-    if (!isBuffer && !isAllDay && !isSoloEvent && !isDailyScrum) {
+    if (!isBuffer && !isAllDay && !isSoloOr1on1 && !isDailyScrum &&!isTeamCollab) {
       const eventStart = event.getStartTime();
       const eventEnd = event.getEndTime();
 
